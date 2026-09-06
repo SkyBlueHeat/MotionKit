@@ -1,0 +1,33 @@
+{
+  "name": "motionkit-remotion",
+  "version": "1.0.0",
+  "description": "A reusable motion design system built with React, TypeScript, and Remotion",
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "lint": "eslint src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "render:promo": "remotion render src/index.ts ProductPromo public/previews/motionkit-promo.mp4",
+    "render:title": "remotion render src/index.ts TitleDemo public/previews/animated-title.mp4",
+    "render:lowerthird": "remotion render src/index.ts LowerThirdDemo public/previews/lower-third.mp4",
+    "render:chart": "remotion render src/index.ts ChartDemo public/previews/animated-chart.mp4",
+    "render:transitions": "remotion render src/index.ts TransitionDemo public/previews/transitions.mp4",
+    "render:creatorstats": "remotion render src/index.ts CreatorStats public/previews/creator-stats.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.271",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.271"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.3"
+  }
+}
