@@ -1,9 +1,9 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
-import {designTokens} from '../../design/tokens';
+import {designTokens, motionTokens} from '../../design/tokens';
 import {interpolate} from 'remotion';
 
-export type TransitionType = 'fade' | 'slide' | 'wipe' | 'zoom';
+export type TransitionType = 'fade' | 'slide' | 'wipe' | 'zoom' | 'push' | 'mask';
 
 export type TransitionDirection = 'left' | 'right' | 'up' | 'down';
 
@@ -12,6 +12,7 @@ export type SceneTransitionProps = {
   direction?: TransitionDirection;
   children: React.ReactNode;
   progress: number;
+  duration?: number;
 };
 
 export const SceneTransition: React.FC<SceneTransitionProps> = ({
@@ -19,8 +20,11 @@ export const SceneTransition: React.FC<SceneTransitionProps> = ({
   direction = 'left',
   children,
   progress,
+  duration = motionTokens.duration.normal,
 }) => {
   const getTransform = () => {
+    const slideDistance = 200;
+    
     switch (type) {
       case 'fade': {
         return {
@@ -29,7 +33,6 @@ export const SceneTransition: React.FC<SceneTransitionProps> = ({
       }
       
       case 'slide': {
-        const slideDistance = 200;
         const slideProgress = interpolate(progress, [0, 1], [slideDistance, -slideDistance]);
         const axis = direction === 'left' || direction === 'right' ? 'X' : 'Y';
         const sign = direction === 'left' || direction === 'up' ? 1 : -1;
@@ -40,8 +43,7 @@ export const SceneTransition: React.FC<SceneTransitionProps> = ({
       }
       
       case 'wipe': {
-        const wipeDistance = 100;
-        const wipeProgress = interpolate(progress, [0, 1], [0, wipeDistance]);
+        const wipeProgress = interpolate(progress, [0, 1], [0, 100]);
         const wipeAxis = direction === 'left' || direction === 'right' ? 'X' : 'Y';
         const wipeSign = direction === 'left' || direction === 'up' ? -1 : 1;
         return {
@@ -54,6 +56,24 @@ export const SceneTransition: React.FC<SceneTransitionProps> = ({
         return {
           transform: `scale(${scale})`,
           opacity: interpolate(progress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]),
+        };
+      }
+      
+      case 'push': {
+        const pushProgress = interpolate(progress, [0, 1], [0, slideDistance]);
+        const axis = direction === 'left' || direction === 'right' ? 'X' : 'Y';
+        const sign = direction === 'left' || direction === 'up' ? -1 : 1;
+        return {
+          transform: `translate${axis}(${sign * pushProgress}px)`,
+        };
+      }
+      
+      case 'mask': {
+        const maskProgress = interpolate(progress, [0, 1], [0, 100]);
+        const maskAxis = direction === 'left' || direction === 'right' ? 'X' : 'Y';
+        const maskSign = direction === 'left' || direction === 'up' ? -1 : 1;
+        return {
+          clipPath: `circle(${100 - maskProgress}% at ${maskAxis === 'X' ? (maskSign === 1 ? '100%' : '0%') : '50%'} ${maskAxis === 'Y' ? (maskSign === 1 ? '100%' : '0%') : '50%'})`,
         };
       }
       

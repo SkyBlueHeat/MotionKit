@@ -12,7 +12,11 @@
     "render:lowerthird": "remotion render src/index.ts LowerThirdDemo public/previews/lower-third.mp4",
     "render:chart": "remotion render src/index.ts ChartDemo public/previews/animated-chart.mp4",
     "render:transitions": "remotion render src/index.ts TransitionDemo public/previews/transitions.mp4",
-    "render:creatorstats": "remotion render src/index.ts CreatorStats public/previews/creator-stats.mp4"
+    "render:creatorstats": "remotion render src/index.ts CreatorStats public/previews/creator-stats.mp4",
+    "render:vertical": "remotion render src/index.ts VerticalDemo public/previews/vertical-demo.mp4",
+    "render:explainer": "remotion render src/index.ts CreatorExplainerShowcase public/previews/creator-explainer.mp4",
+    "render:showreel": "remotion render src/index.ts MotionKitShowreel public/previews/motionkit-showreel.mp4",
+    "smoke-check": "node scripts/smoke-check.js"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.271",

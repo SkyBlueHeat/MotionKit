@@ -33,7 +33,7 @@ export const slideIn = (
   return interpolate(frame, [startFrame, endFrame], [distance, 0], {
     extrapolateRight: 'clamp',
     extrapolateLeft: 'clamp',
-    easing: motionTokens.easing.easeOut,
+    easing: motionTokens.easing.enter,
   });
 };
 
@@ -52,7 +52,7 @@ export const scaleIn = (
   return interpolate(frame, [startFrame, endFrame], [fromScale, 1], {
     extrapolateRight: 'clamp',
     extrapolateLeft: 'clamp',
-    easing: motionTokens.easing.easeOut,
+    easing: motionTokens.easing.enter,
   });
 };
 
