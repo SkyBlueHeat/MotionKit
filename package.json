@@ -16,7 +16,8 @@
     "render:vertical": "remotion render src/index.ts VerticalDemo public/previews/vertical-demo.mp4",
     "render:explainer": "remotion render src/index.ts CreatorExplainerShowcase public/previews/creator-explainer.mp4",
     "render:showreel": "remotion render src/index.ts MotionKitShowreel public/previews/motionkit-showreel.mp4",
-    "smoke-check": "node scripts/smoke-check.js"
+    "smoke-check": "node scripts/smoke-check.js",
+    "verify:previews": "node scripts/verify-previews.js"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.271",

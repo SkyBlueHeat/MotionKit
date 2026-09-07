@@ -1,224 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MotionKit - A reusable motion design system built with React, TypeScript, and Remotion for animated titles, lower thirds, data visualizations, and scene transitions.">
-  <title>MotionKit — Reusable Motion Components</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="MotionKit is a reusable programmatic motion design system built with React, TypeScript, and Remotion. Watch the showreel, creator explainer, data-driven presets, and responsive video demos."
+  />
+  <title>MotionKit — Programmatic Motion Design System</title>
   <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09090b;
+      --surface: #111116;
+      --surface-2: #15151c;
+      --border: #282832;
+      --text: #f5f5f7;
+      --muted: #a1a1aa;
+      --muted-2: #71717a;
+      --accent: #8b5cf6;
+      --accent-soft: rgba(139, 92, 246, 0.12);
+      --max: 1180px;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
-    
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: #0a0a0f;
-      color: #f5f5f7;
-      line-height: 1.6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 50% -20%, rgba(139, 92, 246, 0.14), transparent 36rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
     }
-    
-    .container {
-      max-width: 1200px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
-      padding: 60px 24px;
     }
-    
+
     header {
+      padding: 72px 0 38px;
       text-align: center;
-      margin-bottom: 60px;
     }
-    
-    h1 {
-      font-size: 64px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-    
-    h1 span {
-      color: #6366f1;
-    }
-    
-    .subtitle {
-      font-size: 24px;
-      color: #3f3f46;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-    }
-    
-    .card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid #27272a;
-      border-radius: 16px;
-      padding: 32px;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: #6366f1;
-    }
-    
-    .card h2 {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #f5f5f7;
-    }
-    
-    .card p {
-      color: #3f3f46;
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
       margin-bottom: 20px;
-      font-size: 16px;
+      background: rgba(255, 255, 255, 0.02);
     }
-    
-    .card video {
+
+    h1 {
+      font-size: clamp(48px, 8vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      margin-bottom: 18px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 20px);
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 14px;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: #4c4c5b;
+      background: var(--surface-2);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .section {
+      padding: 38px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(26px, 3vw, 36px);
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 620px;
+      font-size: 15px;
+    }
+
+    .featured-grid,
+    .video-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .featured-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .video-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(17, 17, 22, 0.9);
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #3d3d48;
+    }
+
+    .video-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #050506;
+      overflow: hidden;
+    }
+
+    .video-wrap.vertical {
+      aspect-ratio: 9 / 16;
+      max-height: 560px;
+      width: min(100%, 315px);
+      margin: 0 auto;
+      background: #050506;
+    }
+
+    video {
+      display: block;
       width: 100%;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      background: #1a1a1f;
+      height: 100%;
+      object-fit: contain;
+      background: #050506;
     }
-    
-    .tags {
+
+    .video-error {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      color: var(--muted);
+      background: #0d0d10;
+      font-size: 14px;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .card-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      letter-spacing: -0.015em;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      font-size: 11px;
+      font-weight: 700;
+      color: #c4b5fd;
+      padding: 4px 7px;
+      border-radius: 7px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(139, 92, 246, 0.18);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .highlight {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .highlight strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .highlight span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .components {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-top: 18px;
     }
-    
-    .tag {
-      background: rgba(99, 102, 241, 0.1);
-      color: #6366f1;
-      padding: 4px 12px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 500;
+
+    .component-pill {
+      color: #d4d4d8;
+      background: #121217;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 13px;
     }
-    
-    .cta {
+
+    footer {
+      padding: 44px 0 60px;
       text-align: center;
-      margin-top: 60px;
-      padding: 40px;
-      background: rgba(99, 102, 241, 0.05);
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      border-radius: 16px;
+      color: var(--muted-2);
+      font-size: 13px;
     }
-    
-    .cta h3 {
-      font-size: 24px;
-      margin-bottom: 16px;
-    }
-    
-    .cta code {
-      background: #1a1a1f;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-family: 'Monaco', 'Menlo', monospace;
-      font-size: 14px;
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 40px;
+
+    @media (max-width: 920px) {
+      .video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      
-      .grid {
+      .highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .shell {
+        width: min(var(--max), calc(100% - 28px));
+      }
+      header {
+        padding-top: 48px;
+      }
+      .featured-grid,
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .highlights {
         grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <main class="shell">
     <header>
+      <div class="eyebrow">React · TypeScript · Remotion</div>
       <h1>Motion<span>Kit</span></h1>
-      <p class="subtitle">A reusable motion design system built with React, TypeScript, and Remotion</p>
+      <p class="lead">
+        A reusable programmatic motion design system for data-driven video — built around typed components,
+        centralized motion tokens, responsive formats, and deterministic frame-based rendering.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="#featured">Watch Showreel</a>
+        <a class="button" href="https://github.com/SkyBlueHeat/MotionKit" target="_blank" rel="noreferrer">View GitHub</a>
+      </div>
     </header>
-    
-    <div class="grid">
-      <div class="card">
-        <h2>Animated Title</h2>
-        <p>Reusable title component with configurable direction, timing, and accent text. Demonstrates staggered animation and smooth easing.</p>
-        <video controls preload="metadata">
-          <source src="previews/animated-title.mp4" type="video/mp4">
-        </video>
-        <div class="tags">
-          <span class="tag">React</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Stagger</span>
-          <span class="tag">Easing</span>
+
+    <section class="section" id="featured">
+      <div class="section-head">
+        <div>
+          <h2>Featured work</h2>
+          <p>The fastest way to understand the system: one focused showreel and one complete creator-style composition.</p>
         </div>
       </div>
-      
-      <div class="card">
-        <h2>Lower Third</h2>
-        <p>Professional lower-third component for interviews and videos with configurable accent colors. Shows sequence planning and controlled movement.</p>
-        <video controls preload="metadata">
-          <source src="previews/lower-third.mp4" type="video/mp4">
-        </video>
-        <div class="tags">
-          <span class="tag">Remotion</span>
-          <span class="tag">Sequencing</span>
-          <span class="tag">Animation</span>
-          <span class="tag">UI</span>
+      <div class="featured-grid" id="featured-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Motion system</h2>
+          <p>Reusable title, lower-third, chart, transition, and promo components composed into production-style video outputs.</p>
         </div>
       </div>
-      
-      <div class="card">
-        <h2>Animated Chart</h2>
-        <p>Data-driven bar chart with animated values and labels. Demonstrates that motion can be driven by data instead of being hard-coded.</p>
-        <video controls preload="metadata">
-          <source src="previews/animated-chart.mp4" type="video/mp4">
-        </video>
-        <div class="tags">
-          <span class="tag">Data-Driven</span>
-          <span class="tag">Visualization</span>
-          <span class="tag">Counters</span>
-          <span class="tag">Dynamic</span>
+      <div class="video-grid" id="motion-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Data-driven video</h2>
+          <p>One shared explainer system, different typed data presets. The content changes without duplicating the composition architecture.</p>
         </div>
       </div>
-      
-      <div class="card">
-        <h2>Scene Transitions</h2>
-        <p>Four transition styles: fade, slide, wipe, and zoom. Demonstrates timing, overlap, and visual continuity between scenes.</p>
-        <video controls preload="metadata">
-          <source src="previews/transitions.mp4" type="video/mp4">
-        </video>
-        <div class="tags">
-          <span class="tag">Transitions</span>
-          <span class="tag">Timing</span>
-          <span class="tag">Sequencing</span>
-          <span class="tag">Composition</span>
+      <div class="video-grid" id="data-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Responsive format</h2>
+          <p>Format-aware layout behavior for vertical video instead of simply stretching a landscape composition.</p>
         </div>
       </div>
-      
-      <div class="card">
-        <h2>Product Promo</h2>
-        <p>15-second composition combining all reusable components. Proves the system is flexible and components can be composed together.</p>
-        <video controls preload="metadata">
-          <source src="previews/motionkit-promo.mp4" type="video/mp4">
-        </video>
-        <div class="tags">
-          <span class="tag">Composition</span>
-          <span class="tag">Reusability</span>
-          <span class="tag">System</span>
-          <span class="tag">Complete</span>
+      <div class="video-grid" id="responsive-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Built as a system</h2>
+          <p>MotionKit separates presentation, timing, design tokens, data, and composition structure so motion stays reusable.</p>
         </div>
       </div>
-    </div>
-    
-    <div class="cta">
-      <h3>Run Locally</h3>
-      <p style="margin-bottom: 16px;">Open Remotion Studio to preview and edit compositions</p>
-      <code>npm install && npm run dev</code>
-    </div>
-  </div>
+      <div class="highlights">
+        <div class="highlight"><strong>Typed components</strong><span>React + TypeScript APIs for reusable motion primitives.</span></div>
+        <div class="highlight"><strong>Motion tokens</strong><span>Central timing, easing, stagger, and motion patterns.</span></div>
+        <div class="highlight"><strong>Data-driven</strong><span>Shared compositions generate multiple preset-driven videos.</span></div>
+        <div class="highlight"><strong>Responsive video</strong><span>16:9, 9:16, and 1:1 format-aware utilities.</span></div>
+      </div>
+      <div class="components" aria-label="MotionKit components">
+        <span class="component-pill">KineticText</span>
+        <span class="component-pill">AnimatedTitle</span>
+        <span class="component-pill">LowerThird</span>
+        <span class="component-pill">StatCard</span>
+        <span class="component-pill">AnimatedChart</span>
+        <span class="component-pill">QuoteCard</span>
+        <span class="component-pill">ChapterTitle</span>
+        <span class="component-pill">SceneTransition</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    MotionKit · Built by Bora Aydin · React · TypeScript · Remotion
+  </footer>
+
+  <script>
+    const videos = [
+      {
+        id: 'showreel',
+        title: 'MotionKit Showreel',
+        description: '40-second overview of the reusable motion system: typography, lower thirds, charts, statistics, transitions, themes, and responsive formats.',
+        src: 'previews/motionkit-showreel.mp4',
+        section: 'featured',
+        badge: '40s'
+      },
+      {
+        id: 'explainer',
+        title: 'Creator Explainer',
+        description: 'A complete creator-style explainer composed from reusable MotionKit primitives in one cohesive sequence.',
+        src: 'previews/creator-explainer.mp4',
+        section: 'featured',
+        badge: '45s'
+      },
+      {
+        id: 'promo',
+        title: 'Product Promo',
+        description: 'A compact product-style composition combining reusable titles, charts, motion graphics, and transitions.',
+        src: 'previews/motionkit-promo.mp4',
+        section: 'motion',
+        badge: '15s'
+      },
+      {
+        id: 'title',
+        title: 'Animated Title',
+        description: 'Reusable title motion with configurable timing, direction, hierarchy, and easing.',
+        src: 'previews/animated-title.mp4',
+        section: 'motion',
+        badge: 'Title'
+      },
+      {
+        id: 'lower-third',
+        title: 'Lower Third',
+        description: 'Interview and creator lower-third composition with staged hierarchy and controlled movement.',
+        src: 'previews/lower-third.mp4',
+        section: 'motion',
+        badge: 'UI Motion'
+      },
+      {
+        id: 'chart',
+        title: 'Animated Chart',
+        description: 'Data-driven animated visualization with staggered bars, counters, labels, and reusable formatting.',
+        src: 'previews/animated-chart.mp4',
+        section: 'motion',
+        badge: 'Data'
+      },
+      {
+        id: 'transitions',
+        title: 'Scene Transitions',
+        description: 'Reusable scene transitions demonstrating pacing, overlap, direction, and visual continuity.',
+        src: 'previews/transitions.mp4',
+        section: 'motion',
+        badge: 'Transitions'
+      },
+      {
+        id: 'saas',
+        title: 'SaaS Analytics',
+        description: 'Data-driven explainer generated from the shared composition system using a SaaS analytics preset.',
+        src: 'previews/saas-preset.mp4',
+        section: 'data',
+        badge: 'Preset'
+      },
+      {
+        id: 'creator',
+        title: 'Creator Growth',
+        description: 'The same explainer architecture populated with a creator-growth data preset.',
+        src: 'previews/creator-preset.mp4',
+        section: 'data',
+        badge: 'Preset'
+      },
+      {
+        id: 'product',
+        title: 'Product Launch',
+        description: 'A third output from the same typed, parameterized video system using product-launch content.',
+        src: 'previews/product-preset.mp4',
+        section: 'data',
+        badge: 'Preset'
+      },
+      {
+        id: 'vertical',
+        title: 'Vertical Demo',
+        description: '9:16 composition demonstrating format-aware typography, spacing, safe zones, and responsive layout.',
+        src: 'previews/vertical-demo.mp4',
+        section: 'responsive',
+        badge: '9:16',
+        vertical: true
+      }
+    ];
+
+    const targets = {
+      featured: document.getElementById('featured-grid'),
+      motion: document.getElementById('motion-grid'),
+      data: document.getElementById('data-grid'),
+      responsive: document.getElementById('responsive-grid')
+    };
+
+    const createCard = (item) => {
+      const card = document.createElement('article');
+      card.className = 'card';
+
+      const wrap = document.createElement('div');
+      wrap.className = `video-wrap${item.vertical ? ' vertical' : ''}`;
+
+      const video = document.createElement('video');
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = item.section === 'featured' ? 'metadata' : 'none';
+      video.setAttribute('aria-label', `${item.title} preview`);
+
+      const source = document.createElement('source');
+      source.src = item.src;
+      source.type = 'video/mp4';
+      video.appendChild(source);
+
+      const error = document.createElement('div');
+      error.className = 'video-error';
+      error.textContent = 'Preview unavailable';
+
+      video.addEventListener('error', () => {
+        video.style.display = 'none';
+        error.style.display = 'flex';
+      });
+
+      wrap.appendChild(video);
+      wrap.appendChild(error);
+
+      const body = document.createElement('div');
+      body.className = 'card-body';
+      body.innerHTML = `
+        <div class="card-topline">
+          <h3>${item.title}</h3>
+          <span class="badge">${item.badge}</span>
+        </div>
+        <p>${item.description}</p>
+      `;
+
+      card.appendChild(wrap);
+      card.appendChild(body);
+      return card;
+    };
+
+    videos.forEach((item) => {
+      const target = targets[item.section];
+      if (target) target.appendChild(createCard(item));
+    });
+  </script>
 </body>
 </html>

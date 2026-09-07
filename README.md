@@ -2,6 +2,9 @@
 
 ### Programmatic Motion Design System built with React, TypeScript & Remotion
 
+**Live Showcase:** https://motion-kit-drab.vercel.app/  
+**GitHub:** https://github.com/SkyBlueHeat/MotionKit
+
 MotionKit is a reusable motion graphics system for building polished, data-driven video in code.
 
 Instead of creating one-off animations, it applies React component architecture and design-system principles to motion — with reusable components, centralized timing and easing, typed APIs, responsive formats, themes, and deterministic frame-based rendering.
